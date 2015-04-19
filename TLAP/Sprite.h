@@ -92,6 +92,8 @@ public:
 	void setAngle(double angle,bool abs = true); //accounts for fps if you have abs be false
 	double X(void){return x;}
 	double Y(void){return y;}
+	int H(){return dstrect->h;}
+	int W(){return dstrect->w;}
 	void moveTo(double x,double y,bool abs = true);//accounts for fps if you have abs be false
 	void sizeTo(int w,int h){dstrect->w=w;dstrect->h=h;center->x=w/2;center->y=h/2;}
 	void setDrawRegion(int x,int y,int w,int h);

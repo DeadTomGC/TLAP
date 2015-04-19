@@ -1,4 +1,4 @@
-﻿Build started 4/19/2015 6:21:00 AM.
+﻿Build started 4/19/2015 4:58:53 PM.
      1>Project "C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\TLAP\TLAP.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\TLAP.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -10,6 +10,14 @@
          TLAP.cpp
      1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(4): warning C4005: 'M_PI' : macro redefinition
                  c:\users\deadtomgc\documents\visual studio 2010\sdl\sdl2-2.0.3\include\SDL_stdinc.h(350) : see previous definition of 'M_PI'
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(453): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(453): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(460): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(460): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(493): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(493): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(500): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(500): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
          All outputs are up-to-date.
          All outputs are up-to-date.
        CoreResGen:

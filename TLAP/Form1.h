@@ -100,8 +100,8 @@ namespace TLAP {
 			shell1->setPriority(2);
 			shell2->setPriority(2);
 			back->setPriority(-1);
-			ship1->moveTo(40,40);
-			ship2->moveTo(340,340);
+			ship1->moveTo(15,32);
+			ship2->moveTo(315,332);
 			ship2->setFlip(SDL_FLIP_HORIZONTAL);
 			ship1->sizeTo(50,15);
 			ship2->sizeTo(50,15);
@@ -443,65 +443,69 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			 shell2->setAngle(hA2+180);
 			 double xs1=xPosS1,ys1=yPosS1,xs2=xPosS2,ys2=yPosS2;
 			 double xr1=xPosS1,yr1=yPosS1,xr2=xPosS2,yr2=yPosS2;
-			 if(T2>T1){
-				 for(xs1=xPosS1;abs(xs1-newx1)>2;xs1+=(newx1-xPosS1)/200){
-					 ship1->moveTo(xs1/100-25,ys1/100-7.5);
-					 ship2->moveTo(xs2/100-25,ys2/100-7.5);
-					 shell1->moveTo(xr1/100-25,yr1/100-25);
-					 shell2->moveTo(xr2/100-25,yr2/100-25);
-					 xr2+=(hLocXS2-xPosS2)/200;
-					 yr2+=(hLocYS2-yPosS2)/200;
-					 double vel2 = sqrt(((hLocYS2-yPosS2)/200)*((hLocYS2-yPosS2)/200)+((hLocXS2-xPosS2)/200)*((hLocXS2-xPosS2)/200));
-					 if(abs(xs2-newx2)>2){
-						 xr1+=vel2*cos(hA1*M_PI/180)*(MuzzleVelocity*cos(vA1*M_PI/180)/(MuzzleVelocity*cos(vA2*M_PI/180)));
-						 yr1+=vel2*sin(hA1*M_PI/180)*(MuzzleVelocity*cos(vA1*M_PI/180)/(MuzzleVelocity*cos(vA2*M_PI/180)));
-						 xs2+=((newx1-xPosS1)/200)*(xVel2/xVel1);
-					 }else{
-						 if(hit1){
-							 shell1->setFrame(2);
-						 }else{
-							 shell1->setFrame(1);
-						 }
-
-					 }
-					 Sprite::renderSprites();
-				 }
-				 if(hit1){
-					 shell1->setFrame(2);
-				 }else{
-					 shell1->setFrame(1);
-				 }
-				 if(hit2){
-					 shell2->setFrame(2);
-				 }else{
-					 shell2->setFrame(1);
-				 }
-				 Sprite::renderSprites();
-
-
-
-
-			 }else{
-
-				 for(xs2=xPosS2;abs(xs2-newx2)>2;xs2+=(newx2-xPosS2)/200){
-					 ship1->moveTo(xs1/100-25,ys1/100-7.5);
-					 ship2->moveTo(xs2/100-25,ys2/100-7.5);
-					 shell1->moveTo(xr1/100-25,yr1/100-25);
-					 shell2->moveTo(xr2/100-25,yr2/100-25);
-					 xr1+=(hLocXS1-xPosS1)/200;
-					 yr1+=(hLocYS1-yPosS1)/200;
-					 double vel1 = sqrt(((hLocYS1-yPosS1)/200)*((hLocYS1-yPosS1)/200)+((hLocXS1-xPosS1)/200)*((hLocXS1-xPosS1)/200));
-					 if(abs(xs1-newx1)>2){
-						 xr2+=vel1*cos(hA2*M_PI/180)*(MuzzleVelocity*cos(vA2*M_PI/180)/(MuzzleVelocity*cos(vA1*M_PI/180)));
-						 yr2+=vel1*sin(hA2*M_PI/180)*(MuzzleVelocity*cos(vA2*M_PI/180)/(MuzzleVelocity*cos(vA1*M_PI/180)));
-						 xs1+=((newx2-xPosS2)/200)*(xVel1/xVel2);
+			 if(T1>T2){
+				 double t = 0,h1=0,h2=0;
+				 double v1 = cos(vA1*M_PI/180)*MuzzleVelocity;
+				 double v2 = cos(vA2*M_PI/180)*MuzzleVelocity; 
+				 for(t=0;t<T1;t+=T1/200){
+					 
+					 h1 = -0.5*9.8*t*t+sin(vA1*M_PI/180)*MuzzleVelocity*t;
+					 shell1->sizeTo(50+h1/100,50+h1/100);
+					 shell1->moveTo(v1*t*cos(hA1*M_PI/180)/100+xPosS1/100-shell1->W()/2.0,v1*t*sin(hA1*M_PI/180)/100+yPosS1/100-shell1->H()/2.0);
+					 
+					 ship2->moveTo(xVel2*t/100+xPosS2/100-ship2->W()/2.0,yPosS2/100-ship2->H()/2.0);
+					 if(h2>=0){
+						
+						h2 = -0.5*9.8*t*t+sin(vA2*M_PI/180)*MuzzleVelocity*t;
+						shell2->sizeTo(50+h2/100,50+h2/100);
+						shell2->moveTo(v2*t*cos(hA2*M_PI/180)/100+xPosS2/100-shell2->W()/2.0,v2*t*sin(hA2*M_PI/180)/100+yPosS2/100-shell2->H()/2.0);
+						ship1->moveTo(xVel1*t/100+xPosS1/100-ship1->W()/2.0,yPosS1/100-ship1->H()/2.0);
 					 }else{
 						 if(hit2){
 							 shell2->setFrame(2);
 						 }else{
 							 shell2->setFrame(1);
 						 }
+					 }
+					 Sprite::renderSprites();
+				 }
+				 if(hit2){
+					 shell2->setFrame(2);
+				 }else{
+					 shell2->setFrame(1);
+				 }
+				 if(hit1){
+					 shell1->setFrame(2);
+				 }else{
+					 shell1->setFrame(1);
+				 }
+				 Sprite::renderSprites();
+				 
 
+			 }else{
+
+				 double t = 0,h1=0,h2=0;
+				 double v1 = cos(vA1*M_PI/180)*MuzzleVelocity;
+				 double v2 = cos(vA2*M_PI/180)*MuzzleVelocity; 
+				 for(t=0;t<T2;t+=T2/200){
+					 
+					 h2 = -0.5*9.8*t*t+sin(vA2*M_PI/180)*MuzzleVelocity*t;
+					 shell2->sizeTo(50+h2/100,50+h2/100);
+					 shell2->moveTo(v2*t*cos(hA2*M_PI/180)/100+xPosS2/100-shell2->W()/2.0,v2*t*sin(hA2*M_PI/180)/100+yPosS2/100-shell2->H()/2.0);
+					 
+					 ship1->moveTo(xVel1*t/100+xPosS1/100-ship1->W()/2.0,yPosS1/100-ship1->H()/2.0);
+					 if(h1>=0){
+						
+						h1 = -0.5*9.8*t*t+sin(vA1*M_PI/180)*MuzzleVelocity*t;
+						shell1->sizeTo(50+h1/100,50+h1/100);
+						shell1->moveTo(v1*t*cos(hA1*M_PI/180)/100+xPosS1/100-shell1->W()/2.0,v1*t*sin(hA1*M_PI/180)/100+yPosS1/100-shell1->H()/2.0);
+						ship2->moveTo(xVel2*t/100+xPosS2/100-ship2->W()/2.0,yPosS2/100-ship2->H()/2.0);
+					 }else{
+						 if(hit1){
+							 shell1->setFrame(2);
+						 }else{
+							 shell1->setFrame(1);
+						 }
 					 }
 					 Sprite::renderSprites();
 				 }
