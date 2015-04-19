@@ -6,7 +6,7 @@
 using namespace TLAP;
 
 [STAThreadAttribute]
-int main(array<System::String ^> ^args)
+int main(int argc, char *argv[])
 {
 	// Enabling Windows XP visual effects before any controls are created
 	Application::EnableVisualStyles();

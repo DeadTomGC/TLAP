@@ -1,33 +1,40 @@
-﻿Build started 4/19/2015 3:03:39 AM.
-     1>Project "C:\Users\Joshua Coombe\documents\visual studio 2010\Projects\TLAP\TLAP\TLAP.vcxproj" on node 2 (build target(s)).
+﻿Build started 4/19/2015 6:21:00 AM.
+     1>Project "C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\TLAP\TLAP.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\TLAP.unsuccessfulbuild" because "AlwaysCreate" was specified.
        GenerateTargetFrameworkMonikerAttribute:
        Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
        ClCompile:
          All outputs are up-to-date.
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _UNICODE /D UNICODE /EHa /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\TLAP.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt TLAP.cpp /clr:nostdlib 
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D NDEBUG /D _UNICODE /D UNICODE /EHa /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\TLAP.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt TLAP.cpp /clr:nostdlib 
          TLAP.cpp
+     1>c:\users\deadtomgc\documents\visual studio 2010\projects\tlap\tlap\Form1.h(4): warning C4005: 'M_PI' : macro redefinition
+                 c:\users\deadtomgc\documents\visual studio 2010\sdl\sdl2-2.0.3\include\SDL_stdinc.h(350) : see previous definition of 'M_PI'
+         All outputs are up-to-date.
          All outputs are up-to-date.
        CoreResGen:
-         "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\resgen.exe" /useSourcePath /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile Form1.resX,Release\TLAP.Form1.resources
-         Processing resource file "Form1.resX" into "Release\TLAP.Form1.resources".
+         No resources are out of date with respect to their source files. Skipping resource generation.
        ResourceCompile:
          All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Joshua Coombe\documents\visual studio 2010\Projects\TLAP\Release\TLAP.exe" /INCREMENTAL:NO /NOLOGO /ASSEMBLYRESOURCE:Release\TLAP.Form1.resources /MANIFEST /ManifestFile:"Release\TLAP.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Joshua Coombe\documents\visual studio 2010\Projects\TLAP\Release\TLAP.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Release\app.res
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\Release\TLAP.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib /ASSEMBLYRESOURCE:Release\TLAP.Form1.resources /MANIFEST /ManifestFile:"Release\TLAP.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\Release\TLAP.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Release\app.res
          Release\AssemblyInfo.obj
+         Release\Sprite.obj
          Release\stdafx.obj
          Release\TLAP.obj
+         Release\utils.obj
          "Release\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
-         TLAP.vcxproj -> C:\Users\Joshua Coombe\documents\visual studio 2010\Projects\TLAP\Release\TLAP.exe
+     1>Sprite.obj : warning LNK4248: unresolved typeref token (01000017) for 'SDL_Texture'; image may not run
+     1>Sprite.obj : warning LNK4248: unresolved typeref token (01000018) for 'SDL_Renderer'; image may not run
+     1>Sprite.obj : warning LNK4248: unresolved typeref token (0100001B) for 'SDL_Window'; image may not run
+         TLAP.vcxproj -> C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\Release\TLAP.exe
        Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Joshua Coombe\documents\visual studio 2010\Projects\TLAP\Release\TLAP.exe;#1" /manifest Release\TLAP.exe.intermediate.manifest
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\Release\TLAP.exe;#1" /manifest Release\TLAP.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Release\TLAP.unsuccessfulbuild".
          Touching "Release\TLAP.lastbuildstate".
-     1>Done Building Project "C:\Users\Joshua Coombe\documents\visual studio 2010\Projects\TLAP\TLAP\TLAP.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\DeadTomGC\Documents\Visual Studio 2010\Projects\TLAP\TLAP\TLAP.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.79
+Time Elapsed 00:00:01.34

@@ -1,5 +1,6 @@
 #pragma once
 #include <math.h>
+#include "Sprite.h"
 # define M_PI         3.141592653589793238462643383279502884L
 namespace TLAP {
 
@@ -73,7 +74,44 @@ namespace TLAP {
 	private: System::Windows::Forms::Label^  label10;
 	private: System::Windows::Forms::TextBox^  hit;
 	private: System::Windows::Forms::Label^  label2;
+	Sprite* ship1;
+	Sprite* ship2;
+	Sprite* shell1;
+	Sprite* shell2;
+	Sprite* back;
+	void startup(){
+			Sprite::createDefaultWindow("TLAP",30,30,640,480,true);
+			Sprite::setTargetFPS(60);
+			shell1 = Sprite::loadSprite("shell.bmp",3);
+			shell1->addImage("splash.bmp");
+			shell1->addImage("hit.bmp");
+			shell1->setImageColorKey(-1,true,0,0,0);
+			shell2 = Sprite::loadSprite("shell.bmp",3);
+			shell2->addImage("splash.bmp");
+			shell2->addImage("hit.bmp");
+			shell2->setImageColorKey(-1,true,0,0,0);
+			ship1 = Sprite::loadSprite("bismark.bmp");
+			ship1->setImageColorKey(-1,true,0,0,0);
+			ship2 = Sprite::loadSprite("iowa.bmp");
+			ship2->setImageColorKey(-1,true,0,0,0);
+			back = Sprite::loadSprite("ocean.bmp");
+			ship1->setPriority(1);
+			ship2->setPriority(1);
+			shell1->setPriority(2);
+			shell2->setPriority(2);
+			back->setPriority(-1);
+			ship1->moveTo(40,40);
+			ship2->moveTo(340,340);
+			ship2->setFlip(SDL_FLIP_HORIZONTAL);
+			ship1->sizeTo(50,15);
+			ship2->sizeTo(50,15);
+			shell1->setVisible(false);
+			shell2->setVisible(false);
+			shell1->sizeTo(50,50);
+			shell2->sizeTo(50,50);
+			Sprite::renderSprites();
 
+	}
 	private:
 		/// <summary>
 		/// Required designer variable.
@@ -118,6 +156,7 @@ namespace TLAP {
 			this->vAngleS1->Name = L"vAngleS1";
 			this->vAngleS1->Size = System::Drawing::Size(100, 20);
 			this->vAngleS1->TabIndex = 0;
+			this->vAngleS1->Text = L"18.75";
 			// 
 			// vAngleS2
 			// 
@@ -125,6 +164,7 @@ namespace TLAP {
 			this->vAngleS2->Name = L"vAngleS2";
 			this->vAngleS2->Size = System::Drawing::Size(100, 20);
 			this->vAngleS2->TabIndex = 1;
+			this->vAngleS2->Text = L"18.75";
 			// 
 			// hAngleS2
 			// 
@@ -132,6 +172,7 @@ namespace TLAP {
 			this->hAngleS2->Name = L"hAngleS2";
 			this->hAngleS2->Size = System::Drawing::Size(100, 20);
 			this->hAngleS2->TabIndex = 2;
+			this->hAngleS2->Text = L"225.8866";
 			// 
 			// hAngleS1
 			// 
@@ -139,6 +180,7 @@ namespace TLAP {
 			this->hAngleS1->Name = L"hAngleS1";
 			this->hAngleS1->Size = System::Drawing::Size(100, 20);
 			this->hAngleS1->TabIndex = 3;
+			this->hAngleS1->Text = L"45.8866";
 			// 
 			// button1
 			// 
@@ -275,7 +317,7 @@ namespace TLAP {
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(254, 37);
+			this->label9->Location = System::Drawing::Point(250, 36);
 			this->label9->Name = L"label9";
 			this->label9->Size = System::Drawing::Size(41, 13);
 			this->label9->TabIndex = 22;
@@ -340,6 +382,7 @@ namespace TLAP {
 			this->Load += gcnew System::EventHandler(this, &Form1::Form1_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			startup();
 
 		}
 #pragma endregion
@@ -351,14 +394,15 @@ private: System::Void textBox12_TextChanged(System::Object^  sender, System::Eve
 		 }
 private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
 			 double MuzzleVelocity=820,vA1,hA1,vA2,hA2,xVel1,xVel2,D1,D2,T1,T2,xPosS1,yPosS1,xPosS2,yPosS2,hLocXS1,hLocYS1,hLocXS2,hLocYS2;
+			 bool hit1=false,hit2=false;
 			 vA1=System::Convert::ToDouble(vAngleS1->Text);
 			 hA1=System::Convert::ToDouble(hAngleS1->Text);
 			 vA2=System::Convert::ToDouble(vAngleS2->Text);
 			 hA2=System::Convert::ToDouble(hAngleS2->Text);
-			 
+
 			 xVel1=System::Convert::ToDouble(xVelS1->Text);
 			 xVel2=System::Convert::ToDouble(xVelS2->Text);
-			  
+
 			 xPosS1=System::Convert::ToDouble(this->xPosS1->Text);
 			 yPosS1=System::Convert::ToDouble(this->yPosS1->Text);
 			 xPosS2=System::Convert::ToDouble(this->xPosS2->Text);
@@ -379,18 +423,101 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 			 hit->Text="";
 			 double newx2=xPosS2+xVel2*T1;
 			 //hit->Text+=newx2+" " +xPosS2+" "+hLocXS1+" "+hLocYS1;
-		     if (hLocXS1<=135+newx2 && hLocXS1>=-135+newx2 && hLocYS1<=16.5+yPosS2 && hLocYS1>=-16.5+yPosS2){
-			 hit->Text+="   Ship2 hit   ";
-			 
+			 if (hLocXS1<=135+newx2 && hLocXS1>=-135+newx2 && hLocYS1<=16.5+yPosS2 && hLocYS1>=-16.5+yPosS2){
+				 hit->Text+="	Ship2 hit   ";
+				 hit1 = true;
 			 }
 
 			 double newx1=xPosS1+xVel1*T2;
-				 
-		     if (hLocXS2<=135+newx1 && hLocXS2>=-135+newx1 && hLocYS2<=16.5+yPosS1 && hLocYS2>=-16.5+yPosS1){
-			 hit->Text+="   Ship1 hit   ";
-			 
+
+			 if (hLocXS2<=135+newx1 && hLocXS2>=-135+newx1 && hLocYS2<=16.5+yPosS1 && hLocYS2>=-16.5+yPosS1){
+				 hit->Text+="   Ship1 hit   ";
+				 hit2 = true;
 			 }
 
+			 shell1->setVisible(true);
+			 shell2->setVisible(true);
+			 shell1->setFrame(0);
+			 shell2->setFrame(0);
+			 shell1->setAngle(hA1+180);
+			 shell2->setAngle(hA2+180);
+			 double xs1=xPosS1,ys1=yPosS1,xs2=xPosS2,ys2=yPosS2;
+			 double xr1=xPosS1,yr1=yPosS1,xr2=xPosS2,yr2=yPosS2;
+			 if(T2>T1){
+				 for(xs1=xPosS1;abs(xs1-newx1)>2;xs1+=(newx1-xPosS1)/200){
+					 ship1->moveTo(xs1/100-25,ys1/100-7.5);
+					 ship2->moveTo(xs2/100-25,ys2/100-7.5);
+					 shell1->moveTo(xr1/100-25,yr1/100-25);
+					 shell2->moveTo(xr2/100-25,yr2/100-25);
+					 xr2+=(hLocXS2-xPosS2)/200;
+					 yr2+=(hLocYS2-yPosS2)/200;
+					 double vel2 = sqrt(((hLocYS2-yPosS2)/200)*((hLocYS2-yPosS2)/200)+((hLocXS2-xPosS2)/200)*((hLocXS2-xPosS2)/200));
+					 if(abs(xs2-newx2)>2){
+						 xr1+=vel2*cos(hA1*M_PI/180)*(MuzzleVelocity*cos(vA1*M_PI/180)/(MuzzleVelocity*cos(vA2*M_PI/180)));
+						 yr1+=vel2*sin(hA1*M_PI/180)*(MuzzleVelocity*cos(vA1*M_PI/180)/(MuzzleVelocity*cos(vA2*M_PI/180)));
+						 xs2+=((newx1-xPosS1)/200)*(xVel2/xVel1);
+					 }else{
+						 if(hit1){
+							 shell1->setFrame(2);
+						 }else{
+							 shell1->setFrame(1);
+						 }
+
+					 }
+					 Sprite::renderSprites();
+				 }
+				 if(hit1){
+					 shell1->setFrame(2);
+				 }else{
+					 shell1->setFrame(1);
+				 }
+				 if(hit2){
+					 shell2->setFrame(2);
+				 }else{
+					 shell2->setFrame(1);
+				 }
+				 Sprite::renderSprites();
+
+
+
+
+			 }else{
+
+				 for(xs2=xPosS2;abs(xs2-newx2)>2;xs2+=(newx2-xPosS2)/200){
+					 ship1->moveTo(xs1/100-25,ys1/100-7.5);
+					 ship2->moveTo(xs2/100-25,ys2/100-7.5);
+					 shell1->moveTo(xr1/100-25,yr1/100-25);
+					 shell2->moveTo(xr2/100-25,yr2/100-25);
+					 xr1+=(hLocXS1-xPosS1)/200;
+					 yr1+=(hLocYS1-yPosS1)/200;
+					 double vel1 = sqrt(((hLocYS1-yPosS1)/200)*((hLocYS1-yPosS1)/200)+((hLocXS1-xPosS1)/200)*((hLocXS1-xPosS1)/200));
+					 if(abs(xs1-newx1)>2){
+						 xr2+=vel1*cos(hA2*M_PI/180)*(MuzzleVelocity*cos(vA2*M_PI/180)/(MuzzleVelocity*cos(vA1*M_PI/180)));
+						 yr2+=vel1*sin(hA2*M_PI/180)*(MuzzleVelocity*cos(vA2*M_PI/180)/(MuzzleVelocity*cos(vA1*M_PI/180)));
+						 xs1+=((newx2-xPosS2)/200)*(xVel1/xVel2);
+					 }else{
+						 if(hit2){
+							 shell2->setFrame(2);
+						 }else{
+							 shell2->setFrame(1);
+						 }
+
+					 }
+					 Sprite::renderSprites();
+				 }
+				 if(hit2){
+					 shell2->setFrame(2);
+				 }else{
+					 shell2->setFrame(1);
+				 }
+				 if(hit1){
+					 shell1->setFrame(2);
+				 }else{
+					 shell1->setFrame(1);
+				 }
+				 Sprite::renderSprites();
+			 }
+			
 
 
 		 }
